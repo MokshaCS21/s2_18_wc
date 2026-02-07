@@ -1,0 +1,25 @@
+I'm preparing lecture notes for exam revision and want them to follow a consistent structure throughout the semester for all my lecture scribe.
+
+For that I am sharing you two pdf files.
+--> The first PDF file consists of the lecture PDF for which you need to make a complete lecture scribe.
+--> The second PDF file consists of the example of structure (template) of the lecture scribe, which is provided only to demonstrate the structure of how the scribe must look like it's formatting style and all.
+Do not copy or paraphrase any content from the example scribe.
+NOTE: The content of this example file must not be included in the final scribe (only refer to the structure). It is only given to know that how to scribe must be organized.
+
+The goal of this scribe is to help with exam revision. 
+The scribe must cover these points properly:
+- Cover the entire lecture PDF.
+- It should be written as exam revision material style.
+- Include all the definitions, formulas, equations, derivations, proofs, and all the examples only if they are in the lecture PDF, don't introduce new content.
+- Please stick only to the content which appears in the lecture PDF.
+- And give derivations for only those which are given, don't include extra or new things.
+- And also don't omit any concept from the PDF.
+-  Maintain a proper academic note taking style similar to well-written human lecture notes.
+- Also maintain the order of the topics as presented in the lecture PDF.
+
+How the output should be:
+- Follow the structure example file for template of the scribe and do not include any content of it.
+- Do not include any content from the example scribe.
+- Also please do not include anything in the output which includes any reasoning or explanation of how the scribe was created.
+
+Start generating the lecture scribe only after carefully analyzing both the files.
