@@ -1,0 +1,396 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\title{\textbf{CSE400 – Fundamentals of Probability in Computing}}
+\author{\textbf{Moksha Sheth} \\\textbf{Lecture Scribe-1}}
+
+\date{February 7 $2026$}
+
+\begin{document}
+\maketitle
+
+\section*{Lecture 5: Bayes’ Theorem, Random Variables, and Probability Mass Function (PMF) (January 20, 2026)}\\
+
+\hrule
+\vspace{1.5cm}
+
+
+\section*{1. Overview of the Lecture}
+
+This lecture covers three connected ideas used frequently in probability for computing:
+
+\begin{itemize}
+\item \textbf{Bayes’ Theorem} (as weighted conditional probabilities + formal law of total probability + Bayes formula)
+\item \textbf{Random Variables} (why we define them and how their distributions are described)
+\item \textbf{Probability Mass Function (PMF)} for discrete random variables (definition + examples)
+\end{itemize}\\
+
+\vspace{1cm}
+\section*{2. Key Definitions and Terminology}
+
+\vspace{0.5cm}
+\subsection*{2.1 \underline{Mutually Exclusive (Disjoint) Events}}
+
+If events cannot happen together, they are \textbf{mutually exclusive}. In the lecture, $(AB)$ and $(AB^c)$ are disjoint.
+
+\vspace{0.5cm}
+\subsection*{2.2 \underline{Random Variable}}
+
+A \textbf{random variable} is a real-valued function defined on the sample space; its value is determined by the outcome of the experiment.
+
+\vspace{0.5cm}
+\subsection*{2.3 \underline{Distribution of a Random Variable}}
+
+For each possible value $(a)$, the quantity $\Pr[X=a]$ gives the probability that the random variable equals $(a)$. The lecture notes that the distribution can be visualized using a \textbf{bar diagram} where bar height at $(a)$ equals $\Pr[X=a]$.
+
+\vspace{0.5cm}
+\subsection*{2.4 \underline{Discrete Random Variable}}
+
+A random variable is \textbf{discrete} if it can take \textbf{at most a countable} number of possible values.
+
+\vspace{0.5cm}
+\subsection*{2.5 \underline{Probability Mass Function (PMF)}}
+
+For a discrete random variable $(X)$ with range $(R_X=\{x_1,x_2,\dots\})$, the function assigning probabilities to each possible value is called the \textbf{PMF} of $(X)$.
+
+\vspace{0.5cm}
+\subsection*{2.6 \underline{Apriori vs Posteriori Probability (as stated in lecture)}}
+
+\begin{itemize}
+\item $\Pr(B_i)$: \textbf{apriori} probability (from presupposed/self-evident model)
+\item $\Pr(B_i\mid A)$: \textbf{posteriori} probability (after observing event $(A)$)
+\end{itemize}
+
+\vspace{1cm}
+\section*{3. Explanation of Core Concepts and its Understanding}
+
+\vspace{0.5cm}
+\subsection*{3.1 \underline{ Bayes’ Theorem as a Weighted Average of Conditional Probabilities}}
+
+Key idea: write $(A)$ as
+\[
+A = AB \cup AB^c
+\]
+
+so outcomes in $(A)$ are either “in $(A)$ and $(B)$” or “in $(A)$ and not $(B)$”.
+
+Because $(AB)$ and $(AB^c)$ are mutually exclusive,
+\[
+\Pr(A)=\Pr(AB)+\Pr(AB^c).
+\]
+
+Then using conditional probability forms (as shown in the lecture), we get:
+\[
+\Pr(A)=\Pr(A\mid B)\Pr(B)+\Pr(A\mid B^c)\bigl(1-\Pr(B)\bigr).
+\]
+
+This is interpreted in the lecture as: \textbf{$\Pr(A)$ is a weighted average of conditional probabilities}, weighted by how likely the conditioning events are.
+
+\vspace{0.5cm}
+\subsection*{3.2 \underline{Law of Total Probability}}
+
+The lecture introduces the law of total probability as a formal tool.
+
+If $(B_1,\dots,B_n)$ are mutually exclusive and partition the sample space, then:
+\[
+\Pr(A)=\sum_{i=1}^{n}\Pr(A\mid B_i)\Pr(B_i).
+\]
+
+(Referenced in lecture as “law of total probability [Formula 3.4]”.)
+
+\vspace{0.5cm}
+\subsection*{3.3 \underline{Bayes Formula (Formal Bayes’ Theorem)}}
+
+Using the relationship (stated in the lecture):
+\[
+\Pr(AB_i)=\Pr(B_i\mid A)\Pr(A),
+\]
+
+the lecture arrives at \textbf{Bayes Formula [Proposition 3.1]}.
+
+Standard form consistent with the lecture’s setup:
+\[
+\Pr(B_i\mid A)=\frac{\Pr(A\mid B_i)\Pr(B_i)}{\sum_{j=1}^{n}\Pr(A\mid B_j)\Pr(B_j)}.
+\]
+
+Also recall: $\Pr(B_i)$ is apriori and $\Pr(B_i\mid A)$ is posteriori as described.
+
+\vspace{0.5cm}
+\subsection*{3.4 \underline{Random Variables: Why we define them}}
+
+Instead of tracking the full outcome, we often track a \textbf{function} of the outcome (examples given: sum of two dice; number of heads). These functions are random variables.
+
+\vspace{0.5cm}
+\subsection*{3.5 \underline{Distribution Visualization (Bar Diagram idea)}}
+
+\begin{itemize}
+\item x-axis: values the RV can take
+\item bar height at value $(a)$: $\Pr[X=a]$
+\item these probabilities come from the probability of the corresponding event in the sample space
+\end{itemize}
+
+\vspace{0.5cm}
+\subsection*{3.6 \underline{PMF Concept (Discrete Case)}}
+
+A discrete random variable has countable possible values; PMF assigns probability to each single value.
+
+\vspace{1cm}
+\section*{4. Important Formulas and Mathematical Expressions}
+
+\vspace{0.5cm}
+\subsection*{4.1 \underline{Event Decomposition}}
+
+\[
+A = AB \cup AB^c
+\]
+
+\vspace{0.5cm}
+\subsection*{4.2 \underline{Weighted Average Form (Two-case total probability)}}
+
+\[
+\Pr(A)=\Pr(A\mid B)\Pr(B)+\Pr(A\mid B^c)\bigl(1-\Pr(B)\bigr)
+\]
+
+\vspace{0.5cm}
+\subsection*{4.3 \underline{Law of Total Probability (General partition)}}
+
+\[
+\Pr(A)=\sum_{i=1}^{n}\Pr(A\mid B_i)\Pr(B_i)
+\]
+
+\vspace{0.5cm}
+\subsection*{4.4 \underline{Bayes Formula (Proposition 3.1)}}
+
+\[
+\Pr(B_i\mid A)=\frac{\Pr(A\mid B_i)\Pr(B_i)}{\sum_{j=1}^{n}\Pr(A\mid B_j)\Pr(B_j)}
+\]
+
+\vspace{0.5cm}
+\subsection*{4.5 \underline{Conditional Probability used in examples}}
+
+\[
+\Pr(A\mid A_1)=\frac{\Pr(AA_1)}{\Pr(A_1)}
+\]
+
+\vspace{0.5cm}
+\subsection*{4.6 \underline{Random Variable probabilities (distribution statement used repeatedly)}}
+
+\[
+\Pr[X=a]
+\]
+
+(used for bar diagram interpretation)
+
+\vspace{0.5cm}
+\subsection*{4.7 \underline{PMF example family (given)}}
+
+\[
+p(i)=c\frac{\lambda^i}{i!},\quad i=0,1,2,\dots,\ \lambda>0
+\]
+
+\vspace{1cm}
+\section*{5. Derivations / Proofs (If Present in Lecture)}
+
+\vspace{0.5cm}
+\subsection*{5.1 \underline{Derivation: “Weighted Average of Conditional Probabilities”}}
+
+\textbf{Start:}
+\[
+A = AB \cup AB^c
+\]
+
+\textbf{Step 1 (mutual exclusivity):}
+\[
+\Pr(A)=\Pr(AB)+\Pr(AB^c)
+\]
+
+\textbf{Step 2 (convert to conditional probabilities):}
+\[
+\Pr(AB)=\Pr(A\mid B)\Pr(B),\qquad \Pr(AB^c)=\Pr(A\mid B^c)\Pr(B^c)
+\]
+
+and $\Pr(B^c)=1-\Pr(B)$. This yields the lecture’s final form:
+\[
+\Pr(A)=\Pr(A\mid B)\Pr(B)+\Pr(A\mid B^c)\bigl(1-\Pr(B)\bigr).
+\]
+
+\vspace{0.5cm}
+\subsection*{5.2 \underline{Derivation: Determining the constant $(c)$ in $\left(p(i)=c\frac{\lambda^i}{i!}\right)$}}
+
+\textbf{Given PMF form:} $\left(p(i)=c\frac{\lambda^i}{i!}\right)$, $(i=0,1,2,\dots)$.
+
+\textbf{Start with PMF property:}
+\[
+\sum_{i=0}^{\infty}p(i)=1
+\]
+
+So,
+\[
+\sum_{i=0}^{\infty}c\frac{\lambda^i}{i!}=1
+\quad\Rightarrow\quad
+c\sum_{i=0}^{\infty}\frac{\lambda^i}{i!}=1.
+\]
+
+\textbf{Use the series identity (as used in the lecture’s worked slide):}
+\[
+e^\lambda=\sum_{i=0}^{\infty}\frac{\lambda^i}{i!}
+\]
+
+Therefore,
+\[
+c e^\lambda=1
+\quad\Rightarrow\quad
+c=e^{-\lambda}.
+\]
+
+(This matches the final constant shown in the lecture’s worked example slide.)
+
+\vspace{1cm}
+\section*{6. Worked Examples / Applications}
+
+\vspace{0.5cm}
+\subsection*{6.1 \underline{Example 3.1 (Part 1/2): Insurance (Total Probability idea)}}
+
+\textbf{Problem (given):} Accident-prone class vs not accident-prone class;
+
+\begin{itemize}
+\item $\Pr(\text{accident within 1 year} \mid \text{accident prone})=0.4$
+\item $\Pr(\text{accident within 1 year} \mid \text{not accident prone})=0.2$
+\item $\Pr(\text{accident prone})=0.3$
+Find $\Pr(\text{accident within 1 year})$.
+\end{itemize}
+
+\textbf{Solution (as in lecture):} Let $(A_1)$ = accident within a year, $(A)$ = accident prone.
+\[
+\Pr(A_1)=\Pr(A_1\mid A)\Pr(A)+\Pr(A_1\mid A^c)\Pr(A^c)
+\]
+\[
+=(0.4)(0.3)+(0.2)(0.7)=0.26.
+\]
+
+\textbf{Final answer:} $\boxed{0.26}$.
+
+\vspace{0.5cm}
+\subsection*{6.2 \underline{Example 3.1 (Part 2/2): Insurance (Bayes / Posterior probability)}}
+
+\textbf{Problem (given):} Given that the policyholder had an accident within a year, find the probability they are accident prone.
+
+\textbf{Solution (as in lecture):}
+\[
+\Pr(A\mid A_1)=\frac{\Pr(AA_1)}{\Pr(A_1)}
+=\frac{\Pr(A)\Pr(A_1\mid A)}{\Pr(A_1)}
+=\frac{(0.3)(0.4)}{0.26}=\frac{6}{13}.
+\]
+
+\textbf{Final answer:} $\boxed{\Pr(A\mid A_1)=6/13}$.
+
+\vspace{0.5cm}
+\subsection*{6.3 \underline{Example 3.2: Three cards (Bayes reasoning with “equally likely outcomes”)}}
+
+\textbf{Problem (given):} Three cards: RR, BB, RB. Pick one at random, place it down. If the upper side is red, find probability the other side is black.
+
+\textbf{Setup (as in lecture):} Let events be RR, BB, RB and let $(R)$ be “upturned side is red”. The lecture sets up:
+\[
+\Pr(RB\mid R)=\frac{\Pr(R\mid RB)\Pr(RB)}{\Pr(R\mid RR)\Pr(RR)+\Pr(R\mid RB)\Pr(RB)+\Pr(R\mid BB)\Pr(BB)}.
+\]
+
+With:
+\begin{itemize}
+\item $\Pr(R\mid RB)=1/2$, $\Pr(RB)=1/3$
+\item $\Pr(R\mid RR)=1$, $\Pr(RR)=1/3$
+\item $\Pr(R\mid BB)=0$, $\Pr(BB)=1/3$
+\end{itemize}
+
+\textbf{Final result (lecture conclusion):}
+
+The probability equals $(1/3)$. The lecture explains the common wrong guess $(1/2)$ happens by incorrectly assuming the remaining possibilities are equally likely; correct reasoning counts equally likely “sides” outcomes and shows only one favorable outcome $(R3)$ among three red-up outcomes $(R1, R2, R3)$.
+
+\textbf{Final answer:} $\boxed{1/3}$.
+
+\vspace{0.5cm}
+\subsection*{6.4 \underline{Random Variable Example 1: Tossing 3 fair coins}}
+
+\textbf{Problem (given):} Toss 3 fair coins. Let $(Y)$ be the number of heads.
+
+\textbf{Values and probabilities (as listed):}
+\begin{itemize}
+\item $\Pr(Y=0)=1/8$
+\item $\Pr(Y=1)=3/8$
+\item $\Pr(Y=2)=3/8$
+\item $\Pr(Y=3)=1/8$
+\end{itemize}
+
+Also, since $(Y)$ must take one of these values, total probability sums to 1 (stated in the lecture).
+
+\vspace{0.5cm}
+\subsection*{6.5 \underline{PMF Example Mentioned: Two Independent Tosses of a Fair Coin}}
+
+The lecture includes a slide titled \textbf{“Example: Two Independent Tosses of a Fair Coin”} under PMF.
+
+(Only the example heading is present in the lecture PDF text at that point.)
+
+\vspace{0.5cm}
+\subsection*{6.6 \underline{PMF Example: $\left(p(i)=c\frac{\lambda^i}{i!}\right)$ — find $\Pr(X=0)$ and $\Pr(X>2)$}}
+
+\textbf{Given:} $\left(p(i)=c\frac{\lambda^i}{i!}\right)$, $(i=0,1,2,\dots)$, $(\lambda>0)$.
+
+\textbf{Step 1: Find $(c)$} (from derivation above): $(c=e^{-\lambda})$.
+
+\textbf{Step 2: Compute $\Pr(X=0)$}
+\[
+\Pr(X=0)=p(0)=c\frac{\lambda^0}{0!}=c=e^{-\lambda}.
+\]
+
+\textbf{Step 3: Compute $\Pr(X>2)$}
+
+Use complement form (as shown conceptually in the worked slide):
+\[
+\Pr(X>2)=1-\Pr(X\le 2)=1-\bigl(\Pr(X=0)+\Pr(X=1)+\Pr(X=2)\bigr).
+\]
+
+Where:
+\[
+\Pr(X=1)=p(1)=e^{-\lambda}\frac{\lambda}{1!}=e^{-\lambda}\lambda,\quad
+\Pr(X=2)=p(2)=e^{-\lambda}\frac{\lambda^2}{2!}=e^{-\lambda}\frac{\lambda^2}{2}.
+\]
+
+So,
+\[
+\boxed{\Pr(X>2)=1-e^{-\lambda}\left(1+\lambda+\frac{\lambda^2}{2}\right)}.
+\]
+
+\vspace{1cm}
+\section*{7. Important Observations and Results}
+
+\begin{itemize}
+\item \textbf{Weighted-average interpretation:} $\Pr(A)$ can be expressed as a weighted average of $\Pr(A\mid B)$ and $\Pr(A\mid B^c)$, with weights $\Pr(B)$ and $(1-\Pr(B))$.
+\item \textbf{Common Bayes pitfall (cards example):} After seeing “red”, the remaining cases are not automatically equally likely; you must account for the correct underlying equally-likely outcomes.
+\item \textbf{Random variables shift focus:} we track a numerical quantity derived from outcomes (sum, count, etc.), not necessarily the full outcome.
+\item \textbf{Distribution view:} A distribution can be represented via bars: value vs $\Pr[X=a]$.
+\item \textbf{Discrete RV $\rightarrow$ PMF:} Discrete means countable outcomes, enabling PMF assignment to each value.
+\end{itemize}
+
+\vspace{1cm}
+\section*{8. Quick Revision Points}
+
+\begin{itemize}
+\item \textbf{Decompose event:} $(A=AB\cup AB^c)$.
+\item \textbf{Two-case total probability:}  
+$\Pr(A)=\Pr(A\mid B)\Pr(B)+\Pr(A\mid B^c)(1-\Pr(B))$.
+\item \textbf{Law of total probability (partition):}  
+$\Pr(A)=\sum_i \Pr(A\mid B_i)\Pr(B_i)$.
+\item \textbf{Bayes formula:}  
+$\Pr(B_i\mid A)=\dfrac{\Pr(A\mid B_i)\Pr(B_i)}{\sum_j \Pr(A\mid B_j)\Pr(B_j)}$.
+\item \textbf{Insurance example results:}  
+$\Pr(A_1)=0.26$, and $\Pr(A\mid A_1)=6/13$.
+\item \textbf{Cards example result:} $\Pr(\text{RB}\mid R)=1/3$.
+\item \textbf{3-coin RV distribution:} $(1/8, 3/8, 3/8, 1/8)$ for $(Y=0,1,2,3)$.
+\item \textbf{PMF family:} If $\left(p(i)=c\frac{\lambda^i}{i!}\right)$, then $(c=e^{-\lambda})$, $\Pr(X=0)=e^{-\lambda}$, and
+$\Pr(X>2)=1-e^{-\lambda}\left(1+\lambda+\frac{\lambda^2}{2}\right)$.
+\end{itemize}
+
+\end{document}
