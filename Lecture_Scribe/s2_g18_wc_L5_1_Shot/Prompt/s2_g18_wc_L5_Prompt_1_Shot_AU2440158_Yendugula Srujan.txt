@@ -1,0 +1,30 @@
+The output must be a lecture scribe. It is exam-oriented reference material. It must be faithful to the lecture. The model must not invent content.
+
+It should include definitions and notation, assumptions and conditions, statements of theorems or results, proofs or derivations step-by-step, worked examples with intermediate steps, and logical flow matching the lecture scribe.
+
+Restrictions are to emphasizes discipline. It should be stated that there must be no intuition or commentary not in the lecture, no new examples, no simplifications or tutorials, and no invented content. Everything must be traceable to context.
+
+The way to organize the scribe is it should specify the use of clear academic sections, following the lecture order, and following the structure of the example scribe if provided.
+
+The scribe must be based only on the provided lecture material (slides, transcript, or notes). If something is unclear or missing in the lecture, it should not be filled in or guessed.
+
+Symbols, equations, and notation must be preserved exactly as used in the lecture. Derivations must be shown line by line where they appear in the lecture.
+
+Headings and subheadings must be used clearly. Statements of theorems, definitions, and examples must be kept clearly separated.
+
+All intermediate steps shown in the lecture must be included. Steps that were explicitly written or explained must not be compressed.
+
+The typical structure is:
+
+Title
+
+Introduction / Scope
+
+Definitions and Notation
+
+Results / Theorems
+
+Proofs / Derivations
+
+Worked Examples
+
