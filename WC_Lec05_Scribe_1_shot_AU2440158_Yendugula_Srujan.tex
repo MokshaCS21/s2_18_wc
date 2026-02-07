@@ -1,0 +1,354 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+\setstretch{1.2}
+
+\title{Lecture Scribe\\
+\large CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 5: Bayes’ Theorem, Random Variables, and Probability Mass Function}
+\author{Instructor: Dhaval Patel, PhD}
+\date{January 20, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction / Scope}
+
+Topics covered in the lecture:
+
+\begin{itemize}
+\item Bayes’ Theorem
+    \begin{itemize}
+    \item Weighted Average of Conditional Probabilities
+    \item Learning by Example
+    \item Law of Total Probability and Bayes Formula
+    \end{itemize}
+\item Random Variables
+    \begin{itemize}
+    \item Motivation and Concept
+    \item Examples
+    \end{itemize}
+\item Probability Mass Function (PMF)
+    \begin{itemize}
+    \item Concept
+    \item Examples
+    \end{itemize}
+\end{itemize}
+
+\section{Bayes’ Theorem}
+
+\subsection{Weighted Average of Conditional Probabilities}
+
+\subsubsection*{Decomposition of an Event}
+
+Let $A$ and $B$ be events.
+
+Event $A$ may be expressed as:
+
+\[
+A = AB \cup AB^c
+\]
+
+Reason: For an outcome to be in $A$, it must either:
+\begin{itemize}
+\item be in both $A$ and $B$, or
+\item be in $A$ but not in $B$.
+\end{itemize}
+
+Since $AB$ and $AB^c$ are mutually exclusive, by Axiom 3:
+
+\[
+Pr(A) = Pr(AB) + Pr(AB^c)
+\]
+
+Using conditional probability:
+
+\[
+Pr(A) = Pr(A|B)Pr(B) + Pr(A|B^c)[1 - Pr(B)]
+\]
+
+Statement from lecture:  
+The probability of event $A$ is a weighted average of the conditional probabilities, with weights equal to the probability of the conditioning event.
+
+\subsection{Learning by Example}
+
+\subsubsection*{Example 3.1 (Part 1)}
+
+\textbf{Problem}
+
+Population classification:
+\begin{itemize}
+\item Accident prone
+\item Not accident prone
+\end{itemize}
+
+Given:
+
+\[
+Pr(\text{accident in 1 year} \mid \text{accident prone}) = 0.4
+\]
+
+\[
+Pr(\text{accident in 1 year} \mid \text{not accident prone}) = 0.2
+\]
+
+\[
+Pr(\text{accident prone}) = 0.3
+\]
+
+Find probability that a new policyholder has an accident within a year.
+
+\subsubsection*{Solution}
+
+Let:
+\begin{itemize}
+\item $A_1$: policyholder has an accident within a year
+\item $A$: policyholder is accident prone
+\end{itemize}
+
+\[
+Pr(A_1) = Pr(A_1|A)Pr(A) + Pr(A_1|A^c)Pr(A^c)
+\]
+
+Substitute values:
+
+\[
+Pr(A_1) = (0.4)(0.3) + (0.2)(0.7)
+\]
+
+\[
+Pr(A_1) = 0.26
+\]
+
+\subsubsection*{Example 3.1 (Part 2)}
+
+\textbf{Problem}
+
+Given a policyholder had an accident within a year, find probability that the person is accident prone.
+
+\subsubsection*{Solution}
+
+\[
+Pr(A|A_1) = \frac{Pr(AA_1)}{Pr(A_1)}
+\]
+
+Using:
+
+\[
+Pr(AA_1) = Pr(A)Pr(A_1|A)
+\]
+
+\[
+Pr(A|A_1) =
+\frac{Pr(A)Pr(A_1|A)}{Pr(A_1)}
+\]
+
+Substitute values:
+
+\[
+Pr(A|A_1) = \frac{(0.3)(0.4)}{0.26}
+\]
+
+\[
+= \frac{6}{13}
+\]
+
+\subsection{Law of Total Probability and Bayes Formula}
+
+Statement from lecture:
+
+\[
+Pr(AB_i) = Pr(B_i|A)Pr(A)
+\]
+
+Using this relation leads to \textbf{Bayes Formula (Proposition 3.1)}.
+
+Terminology:
+\begin{itemize}
+\item $Pr(B_i)$: \textbf{apriori probability}
+\item $Pr(B_i|A)$: \textbf{posteriori probability} (after observing event $A$)
+\end{itemize}
+
+\subsection{Example 3.2 (Cards Problem)}
+
+\subsubsection*{Problem}
+
+Three cards:
+\begin{enumerate}
+\item Both sides red (RR)
+\item Both sides black (BB)
+\item One red, one black (RB)
+\end{enumerate}
+
+Procedure:
+\begin{itemize}
+\item One card selected randomly
+\item Card placed on ground
+\item Upper side is red
+\end{itemize}
+
+Find probability that the other side is black.
+
+\subsubsection*{Solution}
+
+Define events:
+\begin{itemize}
+\item RR: chosen card is all red
+\item BB: chosen card is all black
+\item RB: chosen card is red--black
+\item R: upturned side is red
+\end{itemize}
+
+Desired probability:
+
+\[
+Pr(RB|R) =
+\frac{Pr(RB \cap R)}{Pr(R)}
+\]
+
+Using Bayes form:
+
+\[
+Pr(RB|R)=
+\frac{Pr(R|RB)Pr(RB)}
+{Pr(R|RR)Pr(RR)+Pr(R|RB)Pr(RB)+Pr(R|BB)Pr(BB)}
+\]
+
+Substitute values:
+
+\[
+\frac{(1/2)(1/3)}
+{(1)(1/3)+(1/2)(1/3)+(0)(1/3)}
+\]
+
+Result:
+
+\[
+= \frac{1}{3}
+\]
+
+\subsubsection*{Enumeration Explanation}
+
+Possible equally likely outcomes:
+
+\[
+R_1, R_2, B_1, B_2, R_3, B_3
+\]
+
+Other side is black only when outcome is $R_3$.
+
+Conditional probability:
+
+\[
+Pr(R_3 \mid R_1 \text{ or } R_2 \text{ or } R_3) = \frac{1}{3}
+\]
+
+\section{Random Variables}
+
+\subsection{Motivation and Concept}
+
+Definition:
+
+A \textbf{random variable} is a real-valued function defined on the sample space.  
+Values are determined by outcomes of an experiment.  
+Probabilities are assigned to possible values of random variables.
+
+\subsubsection*{Examples from Lecture}
+
+\textbf{Experiment 1:} Dice tossing — interest in the sum of the two dice.
+
+\textbf{Experiment 2:} Coin flipping — interest in total number of heads.
+
+\subsubsection*{Distribution Visualization}
+
+Distribution of a random variable can be represented as a bar diagram:
+\begin{itemize}
+\item x-axis: values of random variable
+\item bar height at value $a$: $Pr[X=a]$
+\item Probabilities computed from corresponding events in sample space
+\end{itemize}
+
+\subsection{Example: Tossing 3 Fair Coins}
+
+Let $Y$ = number of heads.
+
+Possible values:
+
+\[
+Y \in \{0,1,2,3\}
+\]
+
+Probabilities:
+
+\[
+P\{Y=0\} = P\{(t,t,t)\} = \frac{1}{8}
+\]
+
+\[
+P\{Y=1\} = P\{(t,t,h),(t,h,t),(h,t,t)\} = \frac{3}{8}
+\]
+
+\[
+P\{Y=2\} = P\{(t,h,h),(h,t,h),(h,h,t)\} = \frac{3}{8}
+\]
+
+\[
+P\{Y=3\} = P\{(h,h,h)\} = \frac{1}{8}
+\]
+
+Since $Y$ must take one of these values, the probabilities sum to 1.
+
+\section{Probability Mass Function (PMF)}
+
+\subsection{Definition}
+
+A random variable that can take at most a countable number of values is called \textbf{discrete}.
+
+Let $X$ be a discrete random variable with range:
+
+\[
+R_X = x_1, x_2, x_3, \ldots
+\]
+
+The function:
+
+\[
+p(x_k) = Pr(X=x_k)
+\]
+
+is called the \textbf{Probability Mass Function (PMF)} of $X$.
+
+Since $X$ must take one of the values $x_k$:
+
+\[
+\sum_k p(x_k) = 1
+\]
+
+\subsection{Example}
+
+Given PMF:
+
+\[
+p(i)=c\lambda^i,\quad i=0,1,2,\ldots
+\]
+
+Find:
+\begin{itemize}
+\item $P\{X=0\}$
+\item $P\{X>2\}$
+\end{itemize}
+
+(The lecture presents the problem statement; intermediate solution steps are not shown in the slides and are therefore not expanded here.)
+
+\section{End of Lecture}
+
+Class participation instruction:  
+Switch to Campuswire for discussion and participation.
+
+\end{document}
