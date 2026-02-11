@@ -1,0 +1,68 @@
+﻿Prompt:
+Generate an exam-oriented lecture scribe.
+The output must serve as a faithful, exam-ready reconstruction of what was taught in the lecture. 
+suitable for revision in a closed-notes/reading-based exam. 
+Use ONLY the provided lecture slides/PDF and the attached relevant textbook excerpts.
+Do NOT introduce any external material, intuition, simplification, motivation, or assumptions. 
+notations, examples, interpretations, or explanations that are not explicitly present
+in the provided context.
+CONTENT REQUIREMENTS:
+The lecture scribe MUST include, exactly as presented in the context:
+• Definitions and notation
+• Assumptions and conditions
+• Statements of theorems, propositions, and results
+• Proofs or derivations written step-by-step when they appear
+• Worked examples with all intermediate steps exactly as shown
+• Algorithm descriptions and pseudocode exactly as presented
+• The same ordering, scope, and logical flow as the lecture
+
+
+The lecture scribe MUST NOT include:
+• New examples, problems, or variations
+• Intuition, informal explanation, or motivation beyond the slides
+• Simplified wording or paraphrasing that alters meaning
+• Any inferred or reconstructed content not explicitly shown
+• Commentary, summaries, or personal interpretation
+Organize the scribe using clear academic sectioning that mirrors the lecture flow.
+Preserve terminology, variable names, symbols, and formatting used in the lecture.
+
+
+Formal, precise, academic tone suitable strictly for exam revision.
+ONE-SHOT STRUCTURAL EXAMPLE (STRUCTURE ONLY, NOT CONTENT): 
+
+
+
+
+Lecture Scribe: [Lecture Topic]
+1. Introduction
+Scope of the lecture as presented. 
+
+
+2. Core Definitions and Concepts
+Definitions and notation were introduced in the lecture. 
+
+
+3. Main Results / Theorems
+Statements exactly as given. 
+
+
+4. Proofs / Derivations
+Step-by-step logical development as shown in class. 
+
+
+5. Algorithms / Pseudocode (if present)
+Algorithms written exactly as presented. 
+
+
+6. Worked Examples
+Examples solved step-by-step with intermediate results. 
+
+
+7. Conclusion
+Explicit outcomes were established in the lecture. 
+
+
+ 
+Using the SAME STRUCTURE shown above, generate the lecture scribe for the provided context.
+Ensure strict faithfulness to the lecture slides and textbook excerpts.
+Do not add, omit, reorder, or reinterpret any content.
