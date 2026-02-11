@@ -1,0 +1,2 @@
+
+Using I same structure above from lecture scribe structure file , generate a lecture scribe for the content L10 file . I want this scribe as such that I can refer it for my exams final revision and I don't refer to any other lecture notes just this scribe. Use all the same notations and formats as given in L10 file. Don't add any other extra content. Also just use lecture scribe structure file only for the structure. No extra additions are expected from your side.
