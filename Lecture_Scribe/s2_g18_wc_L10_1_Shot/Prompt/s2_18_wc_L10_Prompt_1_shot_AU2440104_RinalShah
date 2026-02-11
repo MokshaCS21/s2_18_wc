@@ -1,0 +1,40 @@
+You are required to generate a LECTURE SCRIBE intended strictly as EXAM-ORIENTED REFERENCE MATERIAL.
+
+Use ONLY the provided lecture context (slides, notes, or permitted textbook excerpts).
+Do NOT introduce any new explanations, intuition, examples, assumptions, or interpretations beyond what explicitly appears in the context.
+
+The scribe must be:
+
+Formal and concise
+
+Faithful to the lecture content
+
+Complete enough for revision using only this document
+
+Wherever they appear in the context, the scribe MUST include:
+
+Definitions
+
+Theorems
+
+Proofs
+
+Derivations
+
+Worked examples
+
+Example Lecture Scribe (structure only):
+
+Topic Title
+
+Definition
+Formal definition as stated.
+
+Key Result
+Statement of the result.
+
+Derivation / Proof
+Step-by-step derivation exactly as presented.
+
+Example
+Worked example following the lecture.
