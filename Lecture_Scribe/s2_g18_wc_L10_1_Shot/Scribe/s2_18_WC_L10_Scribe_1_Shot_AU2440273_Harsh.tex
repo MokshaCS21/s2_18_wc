@@ -1,0 +1,184 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}   % <-- This removes red boxes
+
+\geometry{margin=1in}
+
+\title{\textbf{Lecture 10: Randomized Min-Cut Algorithm}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%------------------------------------------------
+\section{Overview}
+
+\subsection{Min-Cut Problem}
+The Min-Cut problem asks to find the smallest set of edges whose removal disconnects a graph.
+
+\subsection{Why Use Min-Cut?}
+Min-cut helps identify weakest connectivity in a network.
+
+\subsection{What is Min-Cut?}
+Given a graph $G=(V,E)$ with $n$ vertices, a minimum cut is a cut-set of minimum cardinality.
+
+\subsection{Successful Min-Cut Run}
+The algorithm correctly identifies the minimum cut of the graph.
+
+\subsection{Unsuccessful Min-Cut Run}
+The algorithm contracts critical edges early and fails to output the true minimum cut.
+
+\subsection{Max-Flow Min-Cut Theorem}
+In a flow network, the maximum flow from source $S$ to sink $T$ equals the capacity of the minimum cut.
+
+\subsection{Deterministic Min-Cut Algorithm}
+Guarantees exact solution with higher time complexity.
+
+\subsection{Stoer--Wagner Minimum Cut Algorithm}
+Deterministic polynomial-time algorithm for global minimum cut.
+
+\subsection{Randomized Min-Cut Algorithm}
+Uses random edge contractions to find minimum cut probabilistically.
+
+\subsection{Why Randomized Algorithm?}
+\begin{itemize}
+    \item Probabilistic guarantees
+    \item Faster for large graphs
+    \item Avoids worst-case inputs
+\end{itemize}
+
+%------------------------------------------------
+\section{Definitions and Notation}
+
+\subsection{Cut-Set}
+A cut-set is a set of edges whose removal disconnects the graph.
+
+\subsection{Min-Cut Problem}
+Given $G=(V,E)$ with $n$ vertices, find a minimum cardinality cut-set.
+
+\subsection{Edge Contraction}
+For edge $(u,v)$:
+\begin{itemize}
+    \item Merge $u$ and $v$
+    \item Remove self-loops
+    \item Keep parallel edges
+\end{itemize}
+
+\subsection{Flow Network Terms}
+\begin{itemize}
+    \item Capacity of a cut = Sum of capacities from $X$ to $Y$
+    \item Minimum cut = Cut with smallest capacity
+    \item Maximum flow = Largest flow from $S$ to $T$
+\end{itemize}
+
+%------------------------------------------------
+\section{Assumptions and Conditions}
+
+\begin{itemize}
+    \item Graph $G=(V,E)$ is given
+    \item Treated as undirected multigraph
+    \item Randomized algorithms provide probabilistic guarantees
+\end{itemize}
+
+%------------------------------------------------
+\section{Main Results / Theorems}
+
+\subsection{Max-Flow Min-Cut Theorem}
+The maximum flow equals the minimum cut capacity.
+
+\subsection{Stoer--Wagner Theorem}
+Let $s$ and $t$ be vertices of $G$. Let $G/\{s,t\}$ be graph after merging $s$ and $t$.
+
+Minimum cut of $G$ is the smaller of:
+\begin{itemize}
+    \item Minimum $s$--$t$ cut of $G$
+    \item Minimum cut of $G/\{s,t\}$
+\end{itemize}
+
+\subsection{Theorem for Min-Cut Set}
+Karger's algorithm outputs a minimum cut with probability at least:
+\[
+\frac{2}{n(n-1)}
+\]
+
+%------------------------------------------------
+\section{Proof / Justification}
+
+\subsection{Stoer--Wagner Justification}
+Either:
+\begin{itemize}
+    \item Minimum cut separates $s$ and $t$
+    \item Or contraction preserves minimum cut
+\end{itemize}
+
+%------------------------------------------------
+\section{Deterministic vs Randomized}
+
+\subsection{Deterministic (Stoer--Wagner)}
+Time Complexity:
+\[
+O(VE + V^2 \log V)
+\]
+
+\subsection{Randomized (Karger)}
+Time Complexity:
+\[
+O(V^2)
+\]
+
+%------------------------------------------------
+\section{Pseudocode}
+
+\begin{algorithm}
+\caption{MinimumCutPhase(G, a)}
+\begin{algorithmic}
+\STATE $A \leftarrow \{a\}$
+\WHILE{$A \neq V$}
+    \STATE Add most tightly connected vertex to $A$
+\ENDWHILE
+\STATE Return cut-of-the-phase
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{MinimumCut(G)}
+\begin{algorithmic}
+\WHILE{$|V| \ge 1$}
+    \STATE Choose any $a \in V$
+    \STATE MinimumCutPhase(G, a)
+    \STATE Update minimum cut if lighter
+    \STATE Merge last two added vertices
+\ENDWHILE
+\STATE Return minimum cut
+\end{algorithmic}
+\end{algorithm}
+
+%------------------------------------------------
+\section{Python Simulation}
+
+\begin{verbatim}
+import random
+
+def karger(graph):
+    while len(graph) > 2:
+        u = random.choice(list(graph.keys()))
+        v = random.choice(graph[u])
+        graph[u].extend(graph[v])
+        for vertex in graph[v]:
+            graph[vertex].remove(v)
+            graph[vertex].append(u)
+        graph[u] = [x for x in graph[u] if x != u]
+        del graph[v]
+    return len(list(graph.values())[0])
+\end{verbatim}
+
+\end{document}
