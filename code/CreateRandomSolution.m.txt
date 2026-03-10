@@ -1,0 +1,10 @@
+%
+% Create random paths (solutions)
+% 
+
+function sol=CreateRandomSolution(VarSize,VarMin,VarMax) 
+    % Random path nodes
+    sol.r=VarMin.r+ rand(VarSize).*(VarMax.r-VarMin.r);
+    sol.psi=VarMin.psi+ rand(VarSize).*(VarMax.psi-VarMin.psi);
+    sol.phi=VarMin.phi+ rand(VarSize).*(VarMax.phi-VarMin.phi);
+end
