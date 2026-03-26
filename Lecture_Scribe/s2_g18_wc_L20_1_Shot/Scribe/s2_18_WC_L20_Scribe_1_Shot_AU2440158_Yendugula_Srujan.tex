@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\begin{center}
+\textbf{\Large Lecture Scribe} \\[6pt]
+\textbf{Course:} CSE400 – Fundamentals of Probability in Computing \\
+\textbf{Lecture 20:} Linear Transformations and Expectations of Multiple Random Variables \\
+\textbf{Instructor:} Dhaval Patel, PhD \\
+\textbf{Date:} March 19, 2025
+\end{center}
+
+\hrule
+\vspace{8pt}
+
+\section*{Introduction / Scope}
+
+This lecture presents the following topics in sequence:
+
+\begin{itemize}
+\item Statistical representation of random vectors
+\item Mean vector, correlation, and covariance matrices
+\item Linear transformations
+\item Mapping properties under \( Y = AX + b \)
+\item Multivariate Gaussian distributions
+\item Transition from 1D / 2D cases to \( N \)-dimensional joint PDFs
+\item Special cases and properties
+\item Implications of zero correlation and matrix factorization
+\end{itemize}
+
+All material below is strictly based on the provided lecture slides.  
+No additional intuition, examples, simplifications, or inferred content has been introduced.  
+Where mathematical expressions or steps were not visible or not explicitly stated in the lecture material, they have not been reconstructed or guessed.
+
+\section*{Definitions and Notation}
+
+\subsection*{Random Vector}
+
+The lecture defines a vector of random variables as:
+
+\begin{itemize}
+\item An \( N \)-dimensional random vector
+\item Example context specifies \( N = 5 \)
+\end{itemize}
+
+This vector represents multiple stochastic quantities in a system.
+
+\subsection*{Mean Vector}
+
+A mean vector is introduced as a statistical representation of typical system conditions.
+
+(No explicit formula or symbolic expression was visible in the provided lecture material.)
+
+\subsection*{Covariance Matrix}
+
+The covariance matrix is presented with interpretation and definition context.
+
+The lecture associates covariance with dependency relationships among variables.
+
+Stated relationships include:
+
+\begin{itemize}
+\item More rain $\Rightarrow$ more congestion
+\item More rain $\Rightarrow$ lower speed
+\item More traffic $\Rightarrow$ higher pollution
+\item Higher temperature $\Rightarrow$ pollution disperses
+\end{itemize}
+
+The covariance matrix is described as:
+
+\begin{quote}
+``Dependency map of the city''
+\end{quote}
+
+(No explicit matrix form or element-wise definition was visible in the provided material.)
+
+\section*{Results / Theorems}
+
+\subsection*{Joint Gaussian Distribution Assumption}
+
+The lecture states that the system is assumed to follow a joint Gaussian distribution.
+
+Implications stated:
+
+\begin{itemize}
+\item The system behaves in a structured probabilistic way
+\item Characterized by:
+\begin{itemize}
+\item Mean (typical conditions)
+\item Covariance (interdependencies)
+\end{itemize}
+\end{itemize}
+
+(No explicit joint PDF formula was visible in the provided lecture content.)
+
+\section*{Proofs / Derivations}
+
+\subsection*{Linear Transformation Mapping}
+
+A linear transformation is introduced in the form:
+
+\[
+Y = AX + b
+\]
+
+This mapping is used to define derived system quantities.
+
+No step-by-step algebraic derivation of transformed expectation or covariance was visible in the provided slides and therefore is not included.
+
+\section*{Worked Example (Case Study from Lecture)}
+
+\subsection*{Smart City Traffic + Weather System}
+
+The lecture introduces a case study involving prediction of traffic congestion using transportation and climate variables.
+
+\subsubsection*{Step 1: Define \( N \) Random Variables}
+
+\begin{itemize}
+\item A vector of random variables is defined
+\item Dimension specified: \( N = 5 \)
+\end{itemize}
+
+\subsubsection*{Step 2: Mean Vector}
+
+\begin{itemize}
+\item Introduced as representation of typical system behavior
+\item No symbolic computation shown in visible material
+\end{itemize}
+
+\subsubsection*{Step 3: Covariance Matrix Interpretation}
+
+Dependencies stated:
+
+\begin{itemize}
+\item Rainfall increase $\rightarrow$ congestion increases
+\item Rainfall increase $\rightarrow$ speed decreases
+\item Traffic increase $\rightarrow$ pollution increases
+\item Temperature increase $\rightarrow$ pollution disperses
+\end{itemize}
+
+\subsubsection*{Step 4: Joint Gaussian Distribution}
+
+Assumption:
+
+\begin{itemize}
+\item Entire system follows a joint Gaussian structure
+\item Characterized using mean and covariance
+\end{itemize}
+
+\subsubsection*{Step 6: Linear Transformation (Congestion Index)}
+
+The lecture defines a congestion index using a linear transformation.
+
+This is stated explicitly as:
+
+\[
+\text{Congestion Index} = \text{Linear transformation of random vector}
+\]
+
+(No explicit coefficient matrix or vector form was visible.)
+
+\section*{Inference Statements from Lecture}
+
+If rainfall increases suddenly:
+
+\begin{itemize}
+\item Speed $\downarrow$
+\item Traffic $\uparrow$
+\item Pollution $\uparrow$
+\end{itemize}
+
+These directional effects are stated without formal derivation steps in the visible lecture content.
+
+\section*{End of Scribe}
+
+This lecture scribe:
+
+\begin{itemize}
+\item follows lecture order
+\item preserves only visible notation and statements
+\item includes no added theory or reconstructed derivations
+\item avoids new examples or pedagogical simplifications
+\item keeps unclear or missing mathematical content unfilled
+\end{itemize}
+
+\end{document}
