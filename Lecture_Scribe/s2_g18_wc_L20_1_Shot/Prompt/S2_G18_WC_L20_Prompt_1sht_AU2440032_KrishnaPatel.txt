@@ -1,0 +1,88 @@
+﻿You are required to generate a lecture scribe intended to serve as detailed exam preparation material. The output must be sufficiently comprehensive to span at least 7 pages when compiled in LaTeX (normal article format with standard spacing).
+
+
+Use ONLY the provided lecture slides and context. Do not introduce any new concepts, examples, intuition, or explanations that are not explicitly present in the lecture material.
+
+
+The scribe must strictly follow these requirements:
+
+
+- Maintain a formal academic tone suitable for university-level exam revision
+- Present the content in a continuous, logically flowing manner (avoid fragmented bullet points unless absolutely necessary)
+- Follow the exact order and structure of the lecture
+- Include all definitions, notation, assumptions, and statements
+- Include derivations step-by-step with no skipped intermediate steps
+- Expand each derivation into clearly explained sequential steps to ensure completeness
+- Include all matrix representations explicitly
+- Clearly connect each concept to the next (smooth transitions between sections)
+- Preserve all mathematical expressions exactly and format them properly
+
+
+Length Requirement:
+- The explanation must be sufficiently detailed so that the final output corresponds to at least 7 pages in a standard LaTeX document
+- Increase depth by elaborating intermediate steps, restating definitions formally, and explicitly describing each transformation step
+- Do NOT add new content—only expand what is already present in the lecture
+
+
+Do NOT:
+- Add external knowledge or intuition
+- Create new examples
+- Skip derivation steps
+- Shorten explanations
+
+
+
+
+
+
+
+
+Example Lecture Scribe (structure only):
+
+
+Title: Random Variables and Expectation
+
+
+A random variable is defined as a function that assigns a real value to each outcome in a sample space. Let X denote a random variable. The expectation of X is defined as:
+
+
+E[X] = \sum x P(X = x)
+
+
+This represents the average value of the random variable over repeated trials.
+
+
+For a linear transformation Y = aX + b, the expectation is:
+
+
+E[Y] = aE[X] + b
+
+
+This follows from linearity of expectation. The derivation proceeds by substituting Y into the expectation and simplifying step-by-step while maintaining algebraic consistency.
+
+
+
+
+
+
+
+
+
+
+Using the same structure and writing style as the example above, generate a complete lecture scribe for the provided Lecture 20 content.
+
+
+The scribe must include and fully develop the following topics in order:
+
+
+1. Random vector representation
+2. Mean vector and expectation
+3. Correlation matrix (definition, element-wise form, matrix form, symmetry)
+4. Covariance matrix (definition, structure, interpretation, symmetry)
+5. Linear transformation of random vectors (Y = AX + b with full expansion)
+6. Mean transformation (complete derivation step-by-step)
+7. Correlation matrix transformation (full derivation and expansion)
+8. Logical conclusion summarizing the framework
+
+
+Ensure the final output reads as a single continuous, detailed lecture reconstruction suitable for exam revision.
