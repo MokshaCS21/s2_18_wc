@@ -1,0 +1,349 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\title{\textbf{CSE400 – Fundamentals of Probability in Computing}}
+\author{\textbf{Moksha Sheth} \\\textbf{Lecture Scribe-4}}
+
+\date{March $26$ $2026$}
+
+\begin{document}
+\maketitle
+
+\section*{Lecture 20: Linear Transformations and Expectations
+of Multiple Random Variables (March 19, 2026)}\\
+
+\hrule
+\vspace{1.5cm}
+
+\section{Overview of the Lecture}
+
+This lecture focuses on the statistical representation of multiple random variables using vector form and studies how their statistical properties behave under linear transformations.\\
+
+\textbf{Main topics covered:}
+\begin{itemize}
+    \item Random vector representation
+    \item Mean vector, correlation matrix, covariance matrix
+    \item Linear transformations of random vectors
+    \item Transformation of mean, correlation, and covariance
+    \item Gaussian distributions (1D, 2D, and multivariate)
+    \item Properties of uncorrelated Gaussian variables
+    \item Application through a smart city case study
+\end{itemize}
+
+\vspace{1cm}
+\section{Key Definitions and Terminology}
+
+\vspace{0.5cm}
+\subsection*{\underline{Random Vector}}
+A collection of random variables represented in vector form:
+\[
+X = [X_1, X_2, \dots, X_N]^T
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Mean Vector}}
+\[
+\mu_X = E[X]
+\]
+\[
+\mu_X = [E[X_1], E[X_2], \dots, E[X_N]]^T
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Correlation Matrix}}
+\[
+R_{XX} = E[XX^T]
+\]
+\[
+R_{XX}(i,j) = E[X_i X_j]
+\]
+
+\textbf{Properties:}
+\begin{itemize}
+    \item Symmetric matrix
+    \item Size: $N \times N$
+\end{itemize}
+
+\vspace{0.5cm}
+\subsection*{\underline{Covariance Matrix}}
+\[
+C_{XX} = E[(X - \mu_X)(X - \mu_X)^T]
+\]
+
+\[
+C_{XX} =
+\begin{bmatrix}
+\mathrm{Var}(X_1) & \mathrm{Cov}(X_1,X_2) & \cdots \\
+\mathrm{Cov}(X_2,X_1) & \mathrm{Var}(X_2) & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+\[
+\mathrm{Cov}(X_i, X_j) = \mathrm{Cov}(X_j, X_i)
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Linear Transformation}}
+\[
+Y = AX + b
+\]
+
+Where:
+\begin{itemize}
+    \item $A$: Transformation matrix
+    \item $b$: Constant vector
+    \item $X$: Input random vector
+\end{itemize}
+
+\vspace{1cm}
+\section{Explanation of Core Concepts}
+
+\vspace{0.5cm}
+\subsection*{\underline{Vector Representation}}
+Multiple random variables are treated as a single entity (vector), enabling matrix-based operations.
+
+\vspace{0.5cm}
+\subsection*{\underline{Statistical Relationships}}
+\begin{itemize}
+    \item Mean $\rightarrow$ central tendency
+    \item Correlation $\rightarrow$ raw dependency
+    \item Covariance $\rightarrow$ dependency relative to mean
+\end{itemize}
+
+\vspace{0.5cm}
+\subsection*{\underline{Effect of Linear Transformation}}
+\[
+Y = AX + b
+\]
+\begin{itemize}
+    \item Scaling/rotation via $A$
+    \item Shifting via $b$
+\end{itemize}
+
+\vspace{0.5cm}
+\subsection*{\underline{Gaussian Framework}}
+\begin{itemize}
+    \item Used to model multivariate systems
+    \item Defined by mean vector and covariance matrix
+\end{itemize}
+
+\vspace{1cm}
+\section{Important Formulas}
+
+\vspace{0.5cm}
+\subsection*{\underline{Mean}}
+\[
+\mu_X = E[X]
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Correlation Matrix}}
+\[
+R_{XX} = E[XX^T]
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Covariance Matrix}}
+\[
+C_{XX} = E[(X - \mu_X)(X - \mu_X)^T]
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Linear Transformation}}
+\[
+Y = AX + b
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Mean of Transformed Vector}}
+\[
+\mu_Y = E[Y] = A\mu_X + b
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Correlation Transformation}}
+\[
+R_{YY} = AR_{XX}A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Covariance Transformation}}
+\[
+C_{YY} = AC_{XX}A^T
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Univariate Gaussian}}
+\[
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Joint Gaussian (2D)}}
+\[
+f_{XY}(x,y) = \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}} \exp(\cdots)
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Multivariate Gaussian}}
+\[
+f_X(x) = \frac{1}{\sqrt{(2\pi)^N \det(C_{XX})}} 
+\exp\left(-\frac{1}{2}(x-\mu_X)^T C_{XX}^{-1}(x-\mu_X)\right)
+\]
+
+\vspace{1cm}
+\section{Derivations}
+
+\vspace{0.5cm}
+\subsection*{\underline{Mean Transformation}}
+\[
+\mu_Y = E[Y]
+\]
+\[
+= E[AX + b]
+\]
+\[
+= E[AX] + E[b]
+\]
+\[
+= AE[X] + b
+\]
+\[
+\mu_Y = A\mu_X + b
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Correlation Transformation}}
+\[
+R_{YY} = E[YY^T]
+\]
+\[
+= E[(AX + b)(AX + b)^T]
+\]
+\[
+= E[AXX^TA^T + AXb^T + bX^TA^T + bb^T]
+\]
+\[
+= AR_{XX}A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Covariance Transformation}}
+\[
+Y - \mu_Y = A(X - \mu_X)
+\]
+\[
+C_{YY} = E[(Y - \mu_Y)(Y - \mu_Y)^T]
+\]
+\[
+= AC_{XX}A^T
+\]
+
+\vspace{1cm}
+\section{Worked Example}
+
+\vspace{0.5cm}
+\subsection*{\underline{Given}}
+\[
+\mu_X = [2, -1, 1]^T
+\]
+\vspace{0.5cm}
+\subsection*{\underline{Mean}}
+\[
+\mu_Y = A\mu_X
+\]
+\[
+\mu_Y = [1, 2, -3]^T
+\]
+\vspace{0.5cm}
+\subsection*{\underline{Correlation Matrix}}
+\[
+R_{YY} = AR_{XX}A^T
+\]
+
+\[
+R_{YY} =
+\begin{bmatrix}
+17 & -6 & -11 \\
+-6 & 14 & -8 \\
+-11 & -8 & 19
+\end{bmatrix}
+\]
+
+\vspace{0.5cm}
+\subsection*{\underline{Covariance Matrix}}
+\[
+C_{YY} = R_{YY} - \mu_Y \mu_Y^T
+\]
+
+\[
+C_{YY} =
+\begin{bmatrix}
+16 & -8 & -8 \\
+-8 & 10 & -2 \\
+-8 & -2 & 10
+\end{bmatrix}
+\]
+
+\vspace{1cm}
+\section{Case Study: Smart City System}
+
+\[
+X = [X_1, X_2, X_3, X_4, X_5]^T
+\]
+
+\textbf{Variables:}
+\begin{itemize}
+    \item Traffic flow
+    \item Speed
+    \item Rainfall
+    \item Temperature
+    \item Pollution
+\end{itemize}
+
+\textbf{Example Transformation:}
+\[
+Y = 0.6X_1 - 0.4X_2 + 0.8X_3
+\]
+
+\textbf{Results:}
+\[
+E[Y] = a^T \mu
+\]
+\[
+\mathrm{Var}(Y) = a^T \Sigma a
+\]
+
+\vspace{1cm}
+\section{Important Observations}
+
+\begin{itemize}
+    \item Correlation matrix is symmetric
+    \item Covariance matrix represents dependency structure
+    \item Mean depends on both $A$ and $b$
+    \item Covariance depends only on $A$
+    \item Shift $b$ does not affect covariance
+    \item Gaussian distributions are fully defined by mean and covariance
+    \item Uncorrelated Gaussians $\Rightarrow$ covariance matrix is diagonal
+    \item Joint Gaussian factorizes when uncorrelated
+\end{itemize}
+
+\vspace{1cm}
+\section{Quick Revision}
+
+\begin{itemize}
+    \item $X = [X_1, \dots, X_N]^T$
+    \item $\mu_X = E[X]$
+    \item $R_{XX} = E[XX^T]$
+    \item $C_{XX} = E[(X - \mu_X)(X - \mu_X)^T]$
+    \item $Y = AX + b$
+    \item $\mu_Y = A\mu_X + b$
+    \item $C_{YY} = AC_{XX}A^T$
+\end{itemize}
+
+\end{document}
