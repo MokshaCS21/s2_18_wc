@@ -1,0 +1,284 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amssymb}
+
+
+\begin{document}
+
+
+
+\title{Linear Transformations and Expectations of Multiple Random Variables}
+\author{Krishna Patel}
+\date{26th March, 2026}
+
+\maketitle
+
+
+
+
+
+\section{Random Vector Representation}
+
+In the study of multiple random variables, it is often necessary to represent them in a compact and structured mathematical form. Consider a collection of random variables:
+
+\[
+X_1, X_2, \dots, X_N
+\]
+
+These random variables can be collectively represented using vector notation. Specifically, we define the random vector $X$ as:
+
+\[
+X =
+\begin{bmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_N
+\end{bmatrix}
+\]
+
+This representation is referred to as a \textbf{random vector}.
+
+The vector $X$ is called a random vector because each of its components is itself a random variable. This formulation provides a compact representation of multiple random variables, allowing their joint behavior to be studied within a unified framework.
+
+Thus, instead of treating each random variable independently, the vector form enables simultaneous handling of all variables using matrix-based operations.
+
+\section{Mean Vector and Expectation}
+
+\subsection{Definition of Mean Vector}
+
+For a random vector $X$, the mean vector is defined as:
+
+\[
+\mu_X = \mathbb{E}[X]
+\]
+
+\subsection{Component-wise Representation}
+
+Expanding the expectation explicitly, we obtain:
+
+\[
+\mu_X =
+\begin{bmatrix}
+\mathbb{E}[X_1] \\
+\mathbb{E}[X_2] \\
+\vdots \\
+\mathbb{E}[X_N]
+\end{bmatrix}
+\]
+
+Thus, each component of the mean vector corresponds to the expected value of the corresponding random variable.
+
+\subsection{Interpretation}
+
+The mean vector represents the \textbf{average value} of the random vector. Each element of the vector captures the average behavior of an individual random variable within the collection.
+
+\section{Correlation Matrix}
+
+\subsection{Definition}
+
+The correlation matrix for a random vector $X$ is defined as:
+
+\[
+R_{XX} = \mathbb{E}[X X^T]
+\]
+
+\subsection{Element-wise Representation}
+
+The $(i,j)$-th element of the correlation matrix is given by:
+
+\[
+R_{XX}(i,j) = \mathbb{E}[X_i \cdot X_j], \quad i,j \leq N
+\]
+
+\subsection{Matrix Representation}
+
+\[
+R_{XX} =
+\begin{bmatrix}
+\mathbb{E}[X_1 X_1] & \mathbb{E}[X_1 X_2] & \cdots & \mathbb{E}[X_1 X_N] \\
+\mathbb{E}[X_2 X_1] & \mathbb{E}[X_2 X_2] & \cdots & \mathbb{E}[X_2 X_N] \\
+\vdots & \vdots & \ddots & \vdots \\
+\mathbb{E}[X_N X_1] & \mathbb{E}[X_N X_2] & \cdots & \mathbb{E}[X_N X_N]
+\end{bmatrix}
+\]
+
+This is an $(N \times N)$ matrix.
+
+\subsection{Symmetry Property}
+
+\[
+\mathbb{E}[X_i X_j] = \mathbb{E}[X_j X_i]
+\]
+
+\[
+R_{XX} = R_{XX}^T
+\]
+
+\section{Covariance Matrix}
+
+\subsection{Definition}
+
+\[
+C_{XX} = \mathbb{E}[(X - \mu_X)(X - \mu_X)^T]
+\]
+
+\subsection{Expanded Matrix Structure}
+
+\[
+C_{XX} =
+\begin{bmatrix}
+\mathrm{Var}(X_1) & \mathrm{Cov}(X_1, X_2) & \cdots \\
+\mathrm{Cov}(X_2, X_1) & \mathrm{Var}(X_2) & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+Diagonal elements:
+
+\[
+C_{XX}(i,i) = \mathrm{Var}(X_i)
+\]
+
+Off-diagonal elements:
+
+\[
+C_{XX}(i,j) = \mathrm{Cov}(X_i, X_j)
+\]
+
+\subsection{Symmetry Property}
+
+\[
+\mathrm{Cov}(X_i, X_j) = \mathrm{Cov}(X_j, X_i)
+\]
+
+\[
+C_{XX} = C_{XX}^T
+\]
+
+\section{Linear Transformation of Random Vectors}
+
+\[
+Y = A X + b
+\]
+
+where:
+\begin{itemize}
+\item $A$ is a transformation matrix
+\item $b$ is a constant vector
+\item $X$ is the input random vector
+\end{itemize}
+
+\subsection{Expanded Form}
+
+\[
+Y_1 = a_{11}X_1 + a_{12}X_2 + \cdots + a_{1N}X_N + b_1
+\]
+
+\[
+Y_2 = a_{21}X_1 + a_{22}X_2 + \cdots + a_{2N}X_N + b_2
+\]
+
+\[
+\vdots
+\]
+
+\[
+Y_N = a_{N1}X_1 + a_{N2}X_2 + \cdots + a_{NN}X_N + b_N
+\]
+
+\section{Mean Transformation}
+
+\[
+\mu_Y = \mathbb{E}[Y]
+\]
+
+\[
+\mu_Y = \mathbb{E}[A X + b]
+\]
+
+\[
+\mu_Y = \mathbb{E}[A X] + \mathbb{E}[b]
+\]
+
+\[
+\mathbb{E}[b] = b
+\]
+
+\[
+\mu_Y = \mathbb{E}[A X] + b
+\]
+
+\[
+\mathbb{E}[A X] = A \mathbb{E}[X]
+\]
+
+\[
+\mu_Y = A \mathbb{E}[X] + b
+\]
+
+\[
+\mu_Y = A \mu_X + b
+\]
+
+\section{Correlation Matrix Transformation}
+
+\[
+R_{YY} = \mathbb{E}[Y Y^T]
+\]
+
+\[
+R_{YY} = \mathbb{E}[(A X + b)(A X + b)^T]
+\]
+
+\[
+(A X + b)^T = X^T A^T + b^T
+\]
+
+\[
+R_{YY} = \mathbb{E}[(A X + b)(X^T A^T + b^T)]
+\]
+
+\[
+R_{YY} = \mathbb{E}[A X X^T A^T + A X b^T + b X^T A^T + b b^T]
+\]
+
+\[
+R_{YY} = \mathbb{E}[A X X^T A^T] + \mathbb{E}[A X b^T] + \mathbb{E}[b X^T A^T] + \mathbb{E}[b b^T]
+\]
+
+\[
+\mathbb{E}[A X X^T A^T] = A \mathbb{E}[X X^T] A^T = A R_{XX} A^T
+\]
+
+\[
+\mathbb{E}[A X b^T] = A \mathbb{E}[X] b^T = A \mu_X b^T
+\]
+
+\[
+\mathbb{E}[b X^T A^T] = b \mathbb{E}[X^T] A^T = b \mu_X^T A^T
+\]
+
+\[
+\mathbb{E}[b b^T] = b b^T
+\]
+
+\[
+R_{YY} = A R_{XX} A^T + A \mu_X b^T + b \mu_X^T A^T + b b^T
+\]
+
+\section{Logical Conclusion}
+
+This lecture establishes a structured mathematical framework for analyzing multiple random variables using vector and matrix notation.
+
+The development begins with the representation of multiple random variables as a random vector, followed by the definition of the mean vector, which captures the expected value of each component.
+
+The correlation matrix is introduced as a second-order statistical measure capturing pairwise relationships between variables, with symmetry emerging as an inherent property. The covariance matrix further refines this representation by measuring deviations from the mean.
+
+The lecture then studies how these statistical properties transform under linear mappings of the form $Y = A X + b$. The mean transformation demonstrates that expectation propagates linearly through the transformation. The correlation transformation shows how second-order statistics evolve through matrix operations involving $A$, $R_{XX}$, and the mean vector.
+
+Overall, the framework provides a systematic method for analyzing multivariate random variables and their transformations using linear algebraic tools, ensuring consistency and compact representation throughout.
+
+\end{document}
+\end{document}
+\end{document}
