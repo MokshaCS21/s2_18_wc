@@ -1,0 +1,20 @@
+You are generating a Lecture Scribe for CSE 400: Fundamentals of Probability in Computing.
+This lecture scribe is intended to serve as exam-ready reference material.
+
+This task follows One-Shot Prompting. A single example lecture scribe is provided below only to demonstrate structure.
+You must follow the same structure when generating the lecture scribe for the provided lecture slides.
+
+Requirements
+
+Generate a lecture scribe that:
+
+Uses only the provided lecture slides and context
+Is faithful to the lecture content
+Is suitable for reading-based / closed-notes exam preparation
+Includes definitions, assumptions, results, derivations, and worked examples only if they appear in the lecture
+Maintains formal academic tone
+Follows logical flow of the lecture
+Uses clear headings and structured organization
+Does not introduce new examples or explanations
+Does not simplify or creatively reinterpret the lecture
+Does not include external knowledge
