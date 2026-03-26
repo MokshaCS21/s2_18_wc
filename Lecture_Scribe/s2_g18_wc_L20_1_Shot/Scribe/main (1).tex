@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 20: Linear Transformations and Expectations of Multiple Random Variables}
+
+\author{Instructor: Dhaval Patel, PhD}
+\date{March 19, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+This lecture introduces the statistical representation of multiple random variables and examines how linear transformations affect their expectations and distributions. The lecture extends Gaussian distributions from lower dimensions to multivariate settings and discusses covariance-based dependencies.
+
+\section{Lecture Outline}
+
+The lecture covers the following topics:
+
+\begin{itemize}
+\item Statistical Representation of Random Vectors
+\item Mean Vector, Correlation, and Covariance Matrices
+\item Linear Transformations
+\item Mapping Properties under $Y = AX + b$
+\item Multivariate Gaussian Distributions
+\item From 1D/2D cases to N-dimensional Joint PDFs
+\item Special Cases and Properties
+\item Implications of Zero Correlation and Matrix Factorization
+\end{itemize}
+
+\section{Statistical Representation of Random Vectors}
+
+\subsection{Random Vector}
+
+A set of multiple random variables can be represented as a random vector:
+
+\[
+X =
+\begin{bmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_N
+\end{bmatrix}
+\]
+
+Where:
+
+\begin{itemize}
+\item $X_1, X_2, ..., X_N$ are random variables
+\item $N$ represents dimensionality
+\end{itemize}
+
+This representation allows modeling multiple dependent variables simultaneously.
+
+\section{Case Study: Smart City Traffic + Weather System}
+
+The lecture introduces a case study involving an intelligent system designed to predict traffic congestion using transportation and climate variables.
+
+The system uses multiple variables:
+
+\begin{itemize}
+\item Traffic congestion
+\item Rainfall
+\item Temperature
+\item Pollution
+\item Speed
+\end{itemize}
+
+These variables form an N-dimensional random vector where:
+
+\[
+N = 5
+\]
+
+\section{Mean Vector}
+
+The Mean Vector represents expected values of random variables:
+
+\[
+\mu =
+\begin{bmatrix}
+E[X_1] \\
+E[X_2] \\
+\vdots \\
+E[X_N]
+\end{bmatrix}
+\]
+
+Interpretation:
+
+\begin{itemize}
+\item Represents typical system behavior
+\item Describes average traffic and climate conditions
+\item Serves as baseline for probabilistic analysis
+\end{itemize}
+
+\section{Covariance Matrix}
+
+\subsection{Definition}
+
+The Covariance Matrix captures relationships between variables:
+
+\[
+\Sigma =
+\begin{bmatrix}
+Cov(X_1,X_1) & Cov(X_1,X_2) & \cdots \\
+Cov(X_2,X_1) & Cov(X_2,X_2) & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+\subsection{Interpretation}
+
+In the smart city example:
+
+\begin{itemize}
+\item More rain $\Rightarrow$ more congestion
+\item More rain $\Rightarrow$ lower speed
+\item More traffic $\Rightarrow$ higher pollution
+\item Higher temperature $\Rightarrow$ pollution disperses
+\end{itemize}
+
+The covariance matrix acts as a dependency map of the system.
+
+\section{Joint Gaussian Distribution}
+
+The lecture assumes the random vector follows a Joint Gaussian distribution:
+
+\[
+X \sim N(\mu, \Sigma)
+\]
+
+This implies:
+
+\begin{itemize}
+\item Mean represents typical conditions
+\item Covariance represents dependencies
+\item System follows structured probabilistic behavior
+\end{itemize}
+
+\section{Linear Transformations}
+
+\subsection{Linear Transformation Model}
+
+A transformed variable is defined as:
+
+\[
+Y = AX + b
+\]
+
+Where:
+
+\begin{itemize}
+\item $X$ is the original random vector
+\item $A$ is transformation matrix
+\item $b$ is constant vector
+\item $Y$ is transformed random vector
+\end{itemize}
+
+\section{Case Study Transformation: Congestion Index}
+
+The city defines a congestion index using linear transformation:
+
+\[
+Y = AX + b
+\]
+
+This transformation combines:
+
+\begin{itemize}
+\item Traffic variables
+\item Climate variables
+\item Environmental indicators
+\end{itemize}
+
+\section{Inference from Linear Transformation}
+
+\subsection{Inference 1}
+
+Since transformation is linear:
+
+\begin{itemize}
+\item Dependencies between variables are preserved
+\item Mean transforms linearly
+\item Covariance transforms systematically
+\end{itemize}
+
+\subsection{Inference 2}
+
+If rainfall increases suddenly:
+
+\begin{itemize}
+\item Speed decreases
+\item Traffic increases
+\item Pollution increases
+\end{itemize}
+
+This demonstrates propagation of correlation across variables.
+
+\section{Multivariate Gaussian Distribution}
+
+The Gaussian distribution extends to N-dimensions:
+
+\[
+X \sim N(\mu, \Sigma)
+\]
+
+Where:
+
+\begin{itemize}
+\item $\mu$ is mean vector
+\item $\Sigma$ is covariance matrix
+\end{itemize}
+
+\section{Properties of Multivariate Gaussian}
+
+\begin{itemize}
+\item Fully defined by mean and covariance
+\item Linear transformation preserves Gaussian nature
+\item Correlation captured using covariance matrix
+\item Joint behavior determined by dependencies
+\end{itemize}
+
+\section{Special Cases}
+
+\subsection{Zero Correlation}
+
+If:
+
+\[
+Cov(X_i, X_j) = 0
+\]
+
+Then:
+
+\begin{itemize}
+\item Variables are uncorrelated
+\item Dependencies disappear
+\end{itemize}
+
+\subsection{Matrix Factorization}
+
+Covariance matrix factorization provides:
+
+\begin{itemize}
+\item Structural interpretation
+\item Simplified computation
+\item Dimensional reduction insight
+\end{itemize}
+
+\section{Summary}
+
+This lecture introduced:
+
+\begin{itemize}
+\item Random vectors
+\item Mean vectors
+\item Covariance matrices
+\item Multivariate Gaussian distributions
+\item Linear transformations
+\item Dependency interpretation
+\end{itemize}
+
+The Smart City Traffic + Weather system illustrated how multiple correlated variables can be modeled and transformed using probability and linear algebra.
+
+\section*{End of Lecture 20 -- Exam-Oriented Scribe}
+
+\end{document}
