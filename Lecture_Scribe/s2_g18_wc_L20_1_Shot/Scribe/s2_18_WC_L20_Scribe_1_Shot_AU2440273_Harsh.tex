@@ -1,0 +1,272 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+
+\title{\textbf{Lecture Title: Linear Transformations and\\
+Expectations of Multiple Random Variables}}
+\author{Course: CSE400 - Fundamentals of Probability in Computing\\
+Lecture Number: 20}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{1. Overview}
+This lecture focuses on extending probability concepts from single random variables to multiple random variables using vector representation. The key ideas include:
+\begin{itemize}
+\item Representation of multiple random variables as a random vector.
+\item Understanding mean vector, correlation matrix, and covariance matrix.
+\item Studying linear transformations of random vectors.
+\item Analyzing how statistical properties such as mean and correlation transform under linear mappings.
+\item Introduction to multivariate distributions and their properties.
+\end{itemize}
+
+\section*{2. Definitions and Notation}
+
+\textbf{Random Vector}
+
+For random variables $X_1, X_2, \dots, X_N$, we define a random vector:
+\[
+X = 
+\begin{bmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_N
+\end{bmatrix}
+\]
+$X$ is called a random vector. It provides a compact representation of multiple random variables.
+
+\textbf{Mean Vector}
+
+The mean vector of $X$ is defined as:
+\[
+\mu_X = E[X]
+\]
+
+Expanded form:
+\[
+\mu_X =
+\begin{bmatrix}
+E[X_1] \\
+E[X_2] \\
+\vdots \\
+E[X_N]
+\end{bmatrix}
+\]
+
+\textbf{Correlation Matrix}
+
+The correlation matrix is defined as:
+\[
+R_{XX} = E[XX^T]
+\]
+
+Element-wise:
+\[
+R_{XX}(i,j) = E[X_i X_j]
+\]
+
+Matrix form:
+\[
+R_{XX} =
+\begin{bmatrix}
+E[X_1 X_1] & E[X_1 X_2] & \cdots & E[X_1 X_N] \\
+E[X_2 X_1] & E[X_2 X_2] & \cdots & E[X_2 X_N] \\
+\vdots & \vdots & \ddots & \vdots \\
+E[X_N X_1] & E[X_N X_2] & \cdots & E[X_N X_N]
+\end{bmatrix}
+\]
+
+\textbf{Covariance Matrix}
+
+\[
+C_{XX} = E[(X - \mu_X)(X - \mu_X)^T]
+\]
+
+Expanded interpretation:
+\begin{itemize}
+\item Diagonal elements: $\mathrm{Var}(X_i)$
+\item Off-diagonal elements: $\mathrm{Cov}(X_i, X_j)$
+\item Symmetry property: $\mathrm{Cov}(X_i, X_j) = \mathrm{Cov}(X_j, X_i)$
+\end{itemize}
+
+\section*{3. Assumptions and Conditions}
+
+\begin{itemize}
+\item Random variables are assumed to be well-defined with finite expectations.
+\item Expectations exist for all required moments (mean, covariance, etc.).
+\item Linear transformations are applied using constant matrices and vectors.
+\end{itemize}
+
+\section*{4. Main Results / Theorems}
+
+\textbf{Linear Transformation of Random Vectors}
+
+\[
+Y = AX + b
+\]
+
+Where:
+\begin{itemize}
+\item $A$: transformation matrix
+\item $b$: constant vector
+\item $X$: input random vector
+\end{itemize}
+
+Expanded form (for $N$-dimensional case):
+\[
+Y_i = \sum_{j=1}^{N} a_{ij} X_j + b_i
+\]
+
+\textbf{Mean Transformation}
+
+\[
+\mu_Y = E[Y]
+\]
+
+Final result:
+\[
+\mu_Y = A\mu_X + b
+\]
+
+\textbf{Correlation Matrix Transformation}
+
+\[
+R_{YY} = E[YY^T]
+\]
+
+Final expanded result:
+\[
+R_{YY} = AR_{XX}A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\]
+
+\textbf{Covariance Transformation (Key Observation)}
+
+\[
+Y - \mu_Y = A(X - \mu_X)
+\]
+
+This shows that covariance is independent of shift $b$.
+
+\section*{5. Proofs / Derivations}
+
+\textbf{Mean Transformation Derivation}
+
+\[
+\mu_Y = E[Y]
+\]
+
+Substitute:
+\[
+Y = AX + b
+\]
+
+\[
+\mu_Y = E[AX + b]
+\]
+
+Using linearity:
+\[
+\mu_Y = E[AX] + E[b]
+\]
+
+Since $A$ is constant:
+\[
+E[AX] = A E[X] = A\mu_X
+\]
+
+\[
+E[b] = b
+\]
+
+Therefore:
+\[
+\mu_Y = A\mu_X + b
+\]
+
+\textbf{Correlation Matrix Derivation}
+
+\[
+R_{YY} = E[YY^T]
+\]
+
+Substitute:
+\[
+Y = AX + b
+\]
+
+\[
+R_{YY} = E[(AX + b)(AX + b)^T]
+\]
+
+Expand:
+\[
+= E[AXX^T A^T + AXb^T + bX^T A^T + bb^T]
+\]
+
+Apply expectation:
+\[
+R_{YY} = AE[XX^T]A^T + AE[X]b^T + bE[X]^T A^T + bb^T
+\]
+
+\[
+R_{YY} = AR_{XX}A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\]
+
+\textbf{Covariance Insight}
+
+\[
+Y - \mu_Y = (AX + b) - (A\mu_X + b)
+\]
+
+\[
+Y - \mu_Y = A(X - \mu_X)
+\]
+
+This proves:
+\begin{itemize}
+\item Shift does not affect covariance
+\item Only linear transformation influences spread
+\end{itemize}
+
+\section*{6. Worked Examples}
+
+\textbf{Example: Smart City Traffic + Weather System}
+
+Step 1: Define Random Vector
+\[
+X = [X_1 \; X_2 \; X_3 \; X_4 \; X_5]
+\]
+
+Step 2: Mean Vector
+\[
+\mu_X = E[X]
+\]
+
+Step 3: Covariance Matrix Interpretation
+
+\begin{itemize}
+\item More rain $\Rightarrow$ more congestion
+\item More rain $\Rightarrow$ lower speed
+\item More traffic $\Rightarrow$ higher pollution
+\item Higher temperature $\Rightarrow$ pollution disperses
+\end{itemize}
+
+Thus, covariance matrix acts as a dependency map of the system.
+
+\section*{7. Summary}
+
+\begin{itemize}
+\item Multiple random variables are represented using a random vector.
+\item Mean vector captures expected values of each component.
+\item Correlation matrix captures second-order relationships.
+\item Covariance matrix measures dependencies and variability.
+\item Linear transformation: $Y = AX + b$
+\item Mean transforms as: $\mu_Y = A\mu_X + b$
+\item Correlation transforms with additional terms due to shift
+\item Covariance depends only on $A$, not on $b$
+\end{itemize}
+
+\end{document}
