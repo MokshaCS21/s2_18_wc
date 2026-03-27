@@ -1,25 +1,4 @@
-%_________________________________________________________________________________%
-%  Spherical Vector-based Particle Swarm Optimization (SPSO) source codes demo 1.0%
-%                                                                                 %
-%  Developed in MATLAB 2020b                                              %
-%                                                                         %
-%  Author and programmer: Manh Duong Phung                                %
-%                                                                         %
-%         e-Mail: duongpm@gmail.com                                       %
-%                                                                         %
-%       Homepage: https://sites.google.com/view/manhduongphung/           %
-%                                                                         %
-%   Main paper: Manh Duong Phung, Quang Phuc Ha                           %
-%               "Safety-enhanced UAV Path Planning with                   %
-%                Spherical Vector-based Particle Swarm Optimization",     %
-%               Applied soft computing                                    %
-%                                                                         %
-%                                                                         %
-%_________________________________________________________________________%
-
-%
 % Find a path that maximizes the probability of finding object
-% 
 
 clc;
 clear;
