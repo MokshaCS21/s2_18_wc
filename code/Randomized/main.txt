@@ -1,0 +1,120 @@
+clc; clear; close all;
+
+%% PARAMETERS
+num_particles = 20;
+num_waypoints = 10;
+iterations = 50;
+runs = 30;
+
+area_size = 100;
+sigma = 1.0;
+wind_strength = 1.5;
+
+costs = zeros(runs,1);
+collisions = zeros(runs,1);
+
+%% MONTE CARLO SIMULATION
+for run = 1:runs
+    
+    rng(run);
+
+    particles = rand(num_particles, num_waypoints, 3)*area_size;
+    velocities = zeros(size(particles));
+
+    pbest = particles;
+    gbest = squeeze(particles(1,:,:));
+
+    static_obs = [40 40 30; 70 70 40];
+
+    birds = rand(3,3)*area_size;
+    kites = rand(2,3)*area_size;
+    planes = rand(2,3)*area_size;
+
+    best_costs = zeros(iterations,1);
+
+    for iter = 1:iterations
+        
+        % MOVE OBSTACLES
+        birds = birds + randn(size(birds));
+        kites = kites + 0.5*randn(size(kites));
+        planes(:,1) = planes(:,1) + 2;
+        planes(:,2) = planes(:,2) + randn(size(planes(:,2)));
+
+        obstacles = [static_obs; birds; kites; planes];
+
+        for i = 1:num_particles
+            
+            path = squeeze(particles(i,:,:));
+
+            wind = wind_strength * randn(size(path));
+            noisy_path = path + sigma*randn(size(path)) + wind;
+
+            cost = compute_cost(noisy_path, obstacles);
+            pbest_cost = compute_cost(squeeze(pbest(i,:,:)), obstacles);
+            gbest_cost = compute_cost(gbest, obstacles);
+
+            if cost < pbest_cost
+                pbest(i,:,:) = particles(i,:,:);
+            end
+
+            if cost < gbest_cost
+                gbest = path;
+            end
+
+            r1 = rand; r2 = rand;
+
+            velocities(i,:,:) = 0.5*squeeze(velocities(i,:,:)) ...
+                + r1*(squeeze(pbest(i,:,:)) - path) ...
+                + r2*(gbest - path);
+
+            particles(i,:,:) = path + squeeze(velocities(i,:,:));
+        end
+
+        best_costs(iter) = compute_cost(gbest, obstacles);
+    end
+
+    costs(run) = real(best_costs(end));   % FIX for complex issue
+
+    % COLLISION CHECK
+    collision = 0;
+    for j = 1:size(gbest,1)
+        for k = 1:size(obstacles,1)
+            if norm(gbest(j,:) - obstacles(k,:)) < 5
+                collision = 1;
+            end
+        end
+    end
+    collisions(run) = collision;
+
+    if run == 1
+        convergence = best_costs;
+        best_path = gbest;
+        final_obstacles = obstacles;
+    end
+end
+
+%% RESULTS
+disp(['Average Cost: ', num2str(mean(costs))])
+disp(['Std Dev: ', num2str(std(costs))])
+disp(['Collision Rate: ', num2str(mean(collisions))])
+
+%% CONVERGENCE
+figure;
+plot(convergence,'LineWidth',2);
+title('Convergence'); grid on;
+
+%% PDF
+figure;
+histogram(real(costs),'Normalization','pdf');
+title('PDF'); grid on;
+
+%% CDF
+sorted_costs = sort(real(costs));
+cdf_vals = (1:length(costs))/length(costs);
+
+figure;
+plot(sorted_costs, cdf_vals,'LineWidth',2);
+title('CDF'); grid on;
+
+%% VISUALIZATION
+plot_uav(best_path, final_obstacles);
