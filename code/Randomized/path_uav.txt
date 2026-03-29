@@ -1,0 +1,35 @@
+function plot_uav(best_path, obstacles)
+
+figure; hold on;
+
+[xg, yg] = meshgrid(0:5:100, 0:5:100);
+zg = 5*sin(0.1*xg).*cos(0.1*yg);
+surf(xg, yg, zg,'EdgeColor','none','FaceAlpha',0.6);
+
+% Smooth path
+t = 1:size(best_path,1);
+tt = linspace(1,size(best_path,1),100);
+
+xs = interp1(t,best_path(:,1),tt,'spline');
+ys = interp1(t,best_path(:,2),tt,'spline');
+zs = interp1(t,best_path(:,3),tt,'spline');
+
+plot3(xs,ys,zs,'k','LineWidth',3);
+
+scatter3(best_path(:,1),best_path(:,2),best_path(:,3),'filled');
+
+% Obstacles
+[ox,oy,oz] = sphere(20);
+radius = 5;
+
+for i = 1:size(obstacles,1)
+    surf(radius*ox + obstacles(i,1), ...
+         radius*oy + obstacles(i,2), ...
+         radius*oz + obstacles(i,3), ...
+         'FaceColor','r','EdgeColor','none');
+end
+
+title('3D UAV Path');
+grid on;
+view(45,30);
+end
