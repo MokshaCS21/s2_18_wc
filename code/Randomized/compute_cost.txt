@@ -1,0 +1,47 @@
+function cost = compute_cost(path, obstacles)
+
+    cost = 0;
+
+    % PATH LENGTH
+    for i = 1:size(path,1)-1
+        cost = cost + norm(path(i+1,:) - path(i,:));
+    end
+
+    % OBSTACLE PENALTY
+    for i = 1:size(obstacles,1)
+        for j = 1:size(path,1)
+            if norm(path(j,:) - obstacles(i,:)) < 5
+                cost = cost + 100;
+            end
+        end
+    end
+
+    % COMMUNICATION MODEL
+    xg = 50; yg = 50; zg = 0;
+    Pt = 1; N0 = 0.01;
+
+    for i = 1:size(path,1)
+
+        D = norm(path(i,:) - [xg yg zg]);
+
+        theta = atan2(path(i,3), sqrt((path(i,1)-xg)^2 + (path(i,2)-yg)^2));
+
+        P_LoS = 1/(1 + exp(-0.1*(theta - 0.5)));
+
+        if rand < P_LoS
+            G = 1/(D^2);
+        else
+            G = 0.1/(D^2);
+        end
+
+        % FIXED SNR (no complex issue)
+        SNR = Pt*G/N0 + randn()*0.5;
+        SNR = max(SNR,0.01);
+
+        R = log(1 + SNR);
+
+        if R < 2
+            cost = cost + (2-R)*50;
+        end
+    end
+end
